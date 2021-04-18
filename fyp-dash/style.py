@@ -6,5 +6,7 @@ CONTENT_STYLE = {
 
 CARD_STYLE = {
     'margin': '15px',
-    'padding': '10px'
+    'padding': '10px',
+    'display': 'flex',
+    'flex-direction': 'row'
 }

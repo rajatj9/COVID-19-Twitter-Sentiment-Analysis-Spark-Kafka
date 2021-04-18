@@ -1,8 +1,11 @@
-# Deploying Kafka Cluster
+# COVID-19 Twitter Data Sentiment Analysis using Spark and Kafka
+* All commands are issued in the ```fyp-kafka``` namespace.
+
+## Deploying Kafka Cluster
 * Follow the readmes inside the ```kafka-deployment``` directory for deploying Kafka and Zookeeper. 
 * Zookeeper should be deployed prior to deployment of Kafka.
 
-# Twitter Producer
+## Twitter Producer
 
 * Create a docker image of the twitter producer using the following commands
 
@@ -22,7 +25,7 @@ kubectl apply -f config.yaml
 ```
 
 
-# Dash Frontend
+## Dash Frontend
 
 * SSH into the master node on port ```8050```
 
@@ -47,7 +50,7 @@ kubectl apply -f config.yaml
 kubectl port-forward svc/fyp-dash-service 8050:8050
 ```
 
-# Spark Cluster Deployment
+## Spark Cluster Deployment
 
 * First start a python server on your local machine in this directory:
 ```sh
@@ -65,6 +68,12 @@ ngrok http 8000
 ```sh
 wget https://www.apache.org/dyn/closer.lua/spark/spark-2.4.7/spark-2.4.7-bin-hadoop2.7.tgz
 tar -xvf spark-2.4.7-bin-hadoop2.7.tgz
+```
+
+* Create a new service account for Spark and grant it rbac to manage resources:
+```sh
+$ kubectl create serviceaccount spark
+$ kubectl create clusterrolebinding spark-role --clusterrole=edit --serviceaccount=default:spark --namespace=default
 ```
 
 * Execute the following command inside the Spark directory on the master node while updating the ngrok address:

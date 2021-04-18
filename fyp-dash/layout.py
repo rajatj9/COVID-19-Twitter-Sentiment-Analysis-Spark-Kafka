@@ -13,6 +13,10 @@ def generate_bar_chart(data_dict):
         y=y,
         orientation='h'))
 
+def generate_pie_chart(data_dict):
+    values, labels = [data_dict[key] for key in data_dict], [key for key in data_dict]
+    fig = go.Figure(data=[go.Pie(labels=labels, values=values)])
+    return fig
 
 def generate_card(title, graph):
     return dbc.Card(
@@ -27,6 +31,19 @@ def generate_card(title, graph):
         style=CARD_STYLE,
     )
 
+def generate_card_with_two_charts(title, graphs):
+    graph1, graph2 = graphs
+    return dbc.Card(
+        [
+            dbc.CardBody(
+                [
+                    html.H4(title, className="card-title"),
+                    graph1, graph2
+                ]
+            ),
+        ],
+        style=CARD_STYLE,
+    )
 
 navbar = dbc.Navbar(
     [
@@ -51,7 +68,7 @@ data_table = dbc.Card([
     dash_table.DataTable(
         id='tweet-table',
         columns=[{'id': col_name, 'name': col_name} for col_name in ['tweet', 'polarity', 'fetched_at',
-                                                                     'dashboard_time', 'recv_time']],
+                                                                     'dashboard_time']],
         filter_action='native',
         sort_action='native',
     )
