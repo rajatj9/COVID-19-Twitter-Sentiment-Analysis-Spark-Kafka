@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: twitter-producer-service
+spec:
+  selector:
+    app: twitter-producer
+  ports:
+  - protocol: "TCP"
+    port: 6000
+    targetPort: 5000
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: twitter-producer-script
+spec:
+  selector:
+    matchLabels:
+      app: twitter-producer
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: twitter-producer
+    spec:
+      containers:
+      - name: twitter-producer
+        image: 10.3.2.48:5000/twitter-producer-script:latest
