@@ -1,0 +1,9 @@
+dash==1.19
+dash_bootstrap_components
+kafka-python
+dash_core_components
+dash_html_components
+dash_table
+rx
+wordcloud
+plotly

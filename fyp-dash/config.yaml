@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fyp-dash-deployment
+spec:
+  selector:
+    matchLabels:
+      app: dash
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dash
+    spec:
+      containers:
+      - name: dash
+        image: 10.3.2.48:5000/fyp-dash
+        ports:
+          - containerPort: 8050
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fyp-dash-service
+spec:
+  ports:
+  - port: 8050
+    targetPort: 8050
+    name: http
+  selector:
+    app: dash
