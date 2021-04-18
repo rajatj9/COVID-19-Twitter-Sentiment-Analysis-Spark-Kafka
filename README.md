@@ -73,7 +73,7 @@ tar -xvf spark-2.4.7-bin-hadoop2.7.tgz
 * Create a new service account for Spark and grant it rbac to manage resources:
 ```sh
 $ kubectl create serviceaccount spark
-$ kubectl create clusterrolebinding spark-role --clusterrole=edit --serviceaccount=default:spark --namespace=default
+$ kubectl create clusterrolebinding spark-role --clusterrole=edit --serviceaccount=default:spark --namespace=fyp-kafka
 ```
 
 * Execute the following command inside the Spark directory on the master node while updating the ngrok address:
