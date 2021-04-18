@@ -99,4 +99,4 @@ kubectl port-forward $spark_driver_pod_name 4040:4040
 
 # Machine Learning
 
-Follow the ```ml.ipynb``` jupyter notebook to train and save the machine learning model.
+Follow the ```model-training/training.ipynb``` jupyter notebook to train and save the machine learning model.
